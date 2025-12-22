@@ -1,4 +1,5 @@
-import CircularGallery from "../ui/CircularGallery";
+// @ts-ignore
+import CircularGallery from "../ui/CircularGallery.js";
 
 const Services: React.FC = () => {
   const items = [
@@ -38,7 +39,7 @@ const Services: React.FC = () => {
       <div className="relative h-[260px] md:h-[300px]">
         <CircularGallery
           items={items}
-          bend={1.2}               // VERY important: keep this low
+          bend={1.2}               
           textColor="#ffffff"
           borderRadius={0.08}
           font="500 18px Figtree"

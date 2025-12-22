@@ -2,7 +2,7 @@
 import Hero from '../components/sections/Hero';
 import Services from '../components/sections/Services';
 import Doctors from '../components/sections/Doctors';
-import Testimonials from '../components/sections/Testimonials';
+
 
 const Home: React.FC = () => {
   return (
