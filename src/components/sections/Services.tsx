@@ -24,7 +24,7 @@ const Services: React.FC = () => {
   return (
     <section className="relative md:py-16 bg-[#273f23] text-yellow-400 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Enhanced header with value proposition */}
+        
         <div className="mb-16 md:mb-20">
           <div className="flex items-center gap-3 mb-4">
             <div className="h-px w-8 bg-yellow-400" />
@@ -43,7 +43,7 @@ const Services: React.FC = () => {
             </div>
 
             <div>
-              <p className="text-white/70 text-sm md:text-base leading-relaxed mb-4">
+              <p className="text-white/70 text-sm md:text-base leading-relaxed mb-4 max-w-xl">
                 From precise diagnostics to comprehensive treatment, our
                 integrated departments work together for your complete health
                 journey.
@@ -59,13 +59,13 @@ const Services: React.FC = () => {
         </div>
       </div>
 
-      {/* Gallery with better context */}
+  
       <div className="relative">
         <div className="h-[280px] md:h-[340px]">
           <CircularGallery
             items={items}
             bend={1.2}
-            textColor="text-yellow-400"
+              textColor="#f8f3e6"
             borderRadius={0.08}
             font="500 18px Figtree"
             scrollSpeed={1.6}
@@ -79,7 +79,6 @@ const Services: React.FC = () => {
         </div>
       </div>
 
-      {/* Quick stats - adds credibility without clutter */}
       <div className="mx-auto max-w-7xl px-6 mt-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-10">
           {[

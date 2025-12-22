@@ -1,10 +1,11 @@
+import CircularText from '../ui/CircularText';
 import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
     <section className="relative w-full bg-[#273f23] px-4 pt-20 pb-12">
       <div className="mx-auto max-w-7xl">
-        <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+        <div className="relative overflow-hidden rounded-3xl shadow">
           {/* MOBILE IMAGE */}
           <img
             src="/images/HeroMobile.webp"
@@ -40,7 +41,7 @@ const Hero = () => {
           </div>
 
           {/* CONTENT (UNCHANGED STRUCTURE) */}
-          <div className="absolute inset-0 flex items-end justify-center px-4 pb-8 -translate-y-8 lg:items-center lg:justify-start lg:pb-0">
+          <div className="absolute inset-0 flex items-end justify-center px-4 pb-8 lg:-translate-y-16 lg:items-center lg:justify-start lg:pb-0">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -60,16 +61,27 @@ const Hero = () => {
                 Trusted Healthcare
               </span>
 
-              <h1 className="text-2xl  font-semibold leading-snug text-[#F5F3EE] sm:text-3xl lg:text-5xl">
+              <CircularText
+                text="*TRUSTED**HEALTHCARE*"
+                onHover="speedUp"
+                spinDuration={20}
+                className="custom-class"
+              />
+
+              <h1 className="text-2xl lg:w-[450px]  font-semibold leading-snug text-[#F5F3EE] sm:text-3xl lg:text-5xl">
                 Care that feels human.
               </h1>
 
-              <p className="text-sm leading-relaxed text-[#E2E6DF]/90 sm:text-base">
-                Timely access to specialists, coordinated care teams, and attention to every detail.
+              <p className="text-sm lg:w-[350px] leading-relaxed text-[#E2E6DF]/90 sm:text-base">
+                Timely access to specialists, coordinated care teams, and
+                attention to every detail.
               </p>
 
-              <button className="mx-auto mt-2 inline-flex rounded-full bg-[#F5F3EE] px-6 py-3 text-sm font-medium text-[#273f23] lg:mx-0">
+              <button className="mx-auto mt-2 inline-flex rounded-full bg-[#F5F3EE] px-6 py-2 text-sm font-medium text-[#273f23] lg:mx-0">
                 Book an Appointment
+              </button>
+              <button className="mx-auto mt-2 inline-flex rounded-full  border px-6 py-2 text-sm font-normal text-[#fbedc0] lg:mx-0 lg:ml-2">
+                See Doctors
               </button>
             </motion.div>
           </div>
