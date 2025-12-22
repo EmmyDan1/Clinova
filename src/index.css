@@ -28,6 +28,14 @@
   @apply bg-gray-100;
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* ::-webkit-scrollbar-thumb {
   @apply bg-teal-600 rounded-full;
 }

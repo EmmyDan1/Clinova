@@ -3,19 +3,19 @@ import CircularGallery from "../ui/CircularGallery";
 const Services: React.FC = () => {
   const items = [
     {
-      image: "/images/services/diagnostics.jpg",
+      image: "/images/services/Dia.webp",
       text: "Diagnostics",
     },
     {
-      image: "/images/services/cardiology.jpg",
+      image: "/images/services/cardd.webp",
       text: "Cardiology",
     },
     {
-      image: "/images/services/pediatrics.jpg",
+      image: "/images/services/Ped.webp",
       text: "Pediatrics",
     },
     {
-      image: "/images/services/laboratory.jpg",
+      image: "/images/services/Diaa.webp",
       text: "Laboratory",
     },
   ];

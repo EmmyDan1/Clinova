@@ -16,6 +16,7 @@ export interface Service {
   description: string;
   icon: string;
   departments: string[];
+  imageUrl:string
 }
 
 export interface Testimonial {

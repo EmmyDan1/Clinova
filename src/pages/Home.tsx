@@ -10,7 +10,7 @@ const Home: React.FC = () => {
       <Hero />
       <Services />
       <Doctors />
-      <Testimonials />
+     
       
       {/* Contact CTA Section */}
       <section className="py-20 bg-gray-900 text-white">

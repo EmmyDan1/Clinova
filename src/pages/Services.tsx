@@ -1,77 +1,141 @@
-
-import { Card } from '../components/ui/Card';
 import { services } from '../data/services';
+import { ArrowRight, ChevronRight } from 'lucide-react';
+import { useRef } from 'react';
 
 const ServicesPage: React.FC = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 400;
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <div className="py-12">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Healthcare Services
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive medical services delivered with state-of-the-art technology 
-            and compassionate care by our expert medical teams.
-          </p>
+    <div className="py-20 bg-[#273f23]">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+        {/* Minimal header */}
+        <div className="flex items-end justify-between mb-16">
+          <div>
+            <span className="text-yellow-100/30 text-sm font-medium tracking-wider uppercase">
+              Our Services
+            </span>
+            <h1 className="text-4xl font-light text-white mt-2">
+              Specialized <span className="font-normal">Medical</span> Care
+            </h1>
+          </div>
+          
+          {/* Subtle scroll controls */}
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={() => scroll('left')}
+              className="p-2.5 rounded-full border border-white/10 hover:border-white/20 hover:bg-white/5 transition-colors"
+              aria-label="Scroll left"
+            >
+              <ChevronRight className="w-4 h-4 rotate-180 text-white/60" />
+            </button>
+            <button 
+              onClick={() => scroll('right')}
+              className="p-2.5 rounded-full border border-white/10 hover:border-white/20 hover:bg-white/5 transition-colors"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-4 h-4 text-white/60" />
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <Card key={service.id} hover className="h-full">
-              <div className="flex flex-col h-full">
-                <div className="text-4xl mb-6">{service.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 mb-6 flex-grow">
-                  {service.description}
-                </p>
-                
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                  <h4 className="font-semibold text-gray-900 mb-3">
-                    Departments
-                  </h4>
-                  <ul className="space-y-2">
-                    {service.departments.map((dept) => (
-                      <li key={dept} className="flex items-center text-gray-600">
-                        <svg className="w-4 h-4 mr-2 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        {dept}
-                      </li>
-                    ))}
-                  </ul>
+        {/* Modern horizontal layout - no cards */}
+        <div className="relative">
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-8 pb-8 overflow-x-auto scrollbar-hide"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {services.map((service, index) => (
+              <div 
+                key={service.id}
+                className="flex-shrink-0 w-[280px] group"
+              >
+                {/* Image with subtle overlay */}
+                <div className="relative h-64 rounded-xl overflow-hidden mb-6">
+                  <img 
+                    src={service.imageUrl}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="text-xs font-medium text-white/90 bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                      0{index + 1}
+                    </span>
+                  </div>
                 </div>
-                
-                <button className="w-full mt-6 py-3 bg-teal-600 text-white hover:bg-teal-700 rounded-lg font-semibold transition-colors">
-                  Learn More
-                </button>
+
+                {/* Content - minimal, clean */}
+                <div className="px-1">
+                  <h3 className="text-lg font-medium text-white mb-3">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-yellow-100/30 text-sm mb-5 line-clamp-2 leading-relaxed">
+                    {service.description}
+                  </p>
+                  
+                  {/* Minimal tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {service.departments.slice(0, 2).map((dept) => (
+                      <span 
+                        key={dept}
+                        className="px-3 py-1.5 text-xs font-medium text-white/80 bg-white/10 rounded-full backdrop-blur-sm"
+                      >
+                        {dept}
+                      </span>
+                    ))}
+                    {service.departments.length > 2 && (
+                      <span className="px-3 py-1.5 text-xs text-yellow-100/30">
+                        +{service.departments.length - 2}
+                      </span>
+                    )}
+                  </div>
+                  
+                  {/* Subtle action */}
+                  <button className="inline-flex items-center gap-2 text-sm font-medium text-white/90 hover:text-white transition-colors group/btn">
+                    <span>View details</span>
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
-            </Card>
-          ))}
+            ))}
+          </div>
+          
+          {/* Gradient fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#273f23] to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#273f23] to-transparent pointer-events-none" />
         </div>
 
-        {/* Additional Info */}
-        <div className="mt-20 bg-gradient-to-r from-blue-50 to-teal-50 rounded-2xl p-8 md:p-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Quality Care You Can Trust
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <div className="text-4xl font-bold text-teal-600 mb-2">24/7</div>
-                <p className="text-gray-700">Emergency Services</p>
+        {/* Modern stats - integrated style */}
+        <div className="mt-24 pt-20 border-t border-white/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {[
+              { value: '24/7', label: 'Emergency Response', color: 'text-white' },
+              { value: '50+', label: 'Specialist Teams', color: 'text-white' },
+              { value: '98.7%', label: 'Success Rate', color: 'text-white' },
+              { value: '15min', label: 'Avg. Wait Time', color: 'text-white' }
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center">
+                <div className={`text-3xl font-light ${stat.color} mb-2`}>
+                  {stat.value}
+                </div>
+                <div className="text-yellow-100/30 text-sm">
+                  {stat.label}
+                </div>
               </div>
-              <div>
-                <div className="text-4xl font-bold text-teal-600 mb-2">50+</div>
-                <p className="text-gray-700">Medical Specialists</p>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-teal-600 mb-2">99%</div>
-                <p className="text-gray-700">Patient Satisfaction</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
