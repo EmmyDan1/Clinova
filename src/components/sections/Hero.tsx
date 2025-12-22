@@ -65,7 +65,7 @@ const Hero = () => {
               </h1>
 
               <p className="text-sm leading-relaxed text-[#E2E6DF]/90 sm:text-base">
-                Calm, patient-first healthcare in a trusted environment.
+                Timely access to specialists, coordinated care teams, and attention to every detail.
               </p>
 
               <button className="mx-auto mt-2 inline-flex rounded-full bg-[#F5F3EE] px-6 py-3 text-sm font-medium text-[#273f23] lg:mx-0">
