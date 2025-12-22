@@ -482,8 +482,8 @@ export default function CircularGallery({
   const containerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    // You'll need to import App or define it
-    const app = new (window as any).App(containerRef.current, { 
+    // FIX: Use App directly, not window.App
+    const app = new App(containerRef.current, { 
       items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase 
     });
     
