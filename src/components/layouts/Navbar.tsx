@@ -15,7 +15,6 @@ const Navbar: React.FC = () => {
 
   return (
     <header className="fixed top-0 z-50 w-full ">
-     
       <div className="mx-auto max-w-7xl px-6">
         <nav
           className="
@@ -23,13 +22,10 @@ const Navbar: React.FC = () => {
         >
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-900 text-white font-semibold">
-              C
-            </div>
-            <div className="leading-tight">
-              <p className="text-sm font-semibold text-yellow-600">Clinova</p>
-              <span className="uppercase font-light text-[10px] text-yellow-100/30 lg:text-black">Medical Center</span>
-            </div>
+            <span className="text-2xl tracking-tight">
+              <span className="font-bold text-[#273f23]">C</span>
+              <span className="font-medium text-yellow-400">linova</span>
+            </span>
           </Link>
 
           {/* Desktop Nav */}

@@ -7,7 +7,7 @@ export const services: Service[] = [
     description: 'Comprehensive heart health services including diagnostics, treatment, and rehabilitation.',
     icon: '❤️',
     departments: ['Cardiology', 'Cardiac Surgery', 'Cardiac Rehabilitation'],
-    imageUrl: '/images/services/cardd.webp'
+    imageUrl: './images/services/cardd.webp'
   },
   {
     id: '2',

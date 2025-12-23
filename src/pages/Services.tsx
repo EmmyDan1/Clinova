@@ -20,11 +20,11 @@ const ServicesPage: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         {/* Minimal header */}
         <div className="flex items-end justify-between mb-16">
-          <div>
-            <span className="text-yellow-100/30 text-sm font-medium tracking-wider uppercase">
+          <div className='text-yellow-400/50'>
+            <span className=" text-sm font-medium tracking-wider uppercase">
               Our Services
             </span>
-            <h1 className="text-4xl font-light text-white mt-2">
+            <h1 className="text-4xl font-light  mt-2">
               Specialized <span className="font-normal">Medical</span> Care
             </h1>
           </div>
