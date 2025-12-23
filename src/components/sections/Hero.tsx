@@ -1,5 +1,6 @@
-import CircularText from '../ui/CircularText';
+import CircularText from "../ui/CircularText";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -77,9 +78,11 @@ const Hero = () => {
                 attention to every detail.
               </p>
 
-              <button className="mx-auto mt-2 inline-flex rounded-full bg-[#F5F3EE] px-6 py-2 text-sm font-medium text-[#273f23] lg:mx-0">
-                Book an Appointment
-              </button>
+              <Link to="/appointment">
+                <button className="mx-auto mt-2 inline-flex rounded-full bg-[#F5F3EE] px-6 py-2 text-sm font-medium text-[#273f23] lg:mx-0">
+                  Book an Appointment
+                </button>
+              </Link>
               <button className="mx-auto mt-2 inline-flex rounded-full  border px-6 py-2 text-sm font-normal text-[#fbedc0] lg:mx-0 lg:ml-2">
                 See Doctors
               </button>

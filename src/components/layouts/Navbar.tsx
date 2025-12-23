@@ -19,16 +19,16 @@ const Navbar: React.FC = () => {
       <div className="mx-auto max-w-7xl px-6">
         <nav
           className="
-  mt-2 flex items-center justify-between rounded-2xl border border-white/20 md:bg-white px-5 py-0 backdrop-blur-lg"
+  mt-4 flex items-center justify-between rounded-2xl border border-white/20 md:bg-white px-5 py-0 backdrop-blur-lg"
         >
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="hidden flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-900 text-white font-semibold">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-yellow-900 text-white font-semibold">
               C
             </div>
             <div className="leading-tight">
               <p className="text-sm font-semibold text-yellow-600">Clinova</p>
-              <span className="uppercase font-light text-[10px] text-yellow-100/30">Medical Center</span>
+              <span className="uppercase font-light text-[10px] text-yellow-100/30 lg:text-black">Medical Center</span>
             </div>
           </Link>
 
@@ -76,7 +76,6 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile Toggle */}
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden rounded-lg p-1 text-yellow-100/50  hover:border border-yellow-100 hover:bg-white/10"
