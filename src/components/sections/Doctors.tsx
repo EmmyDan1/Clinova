@@ -9,7 +9,6 @@ const Doctors: React.FC = () => {
     <section className="py-28 bg-white">
       <div className="mx-auto max-w-6xl px-6">
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

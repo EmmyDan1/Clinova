@@ -18,12 +18,12 @@ const Navbar: React.FC = () => {
       <div className="mx-auto max-w-7xl px-6">
         <nav
           className="
-  mt-4 flex items-center justify-between rounded-2xl border border-white/20 md:bg-white px-5 py-0 backdrop-blur-lg"
+  mt-4 flex items-center justify-between rounded-2xl border border-white/20 md:bg-[#F8F4E9] px-5 py-0 backdrop-blur-lg"
         >
-          {/* Logo */}
+     
           <Link to="/" className="flex items-center gap-3">
             <span className="text-2xl tracking-tight">
-              <span className="font-bold text-[#273f23]">C</span>
+              <span className="font-bold text-yellow-400 lg:text-[#273f23]">C</span>
               <span className="font-medium text-yellow-400">linova</span>
             </span>
           </Link>

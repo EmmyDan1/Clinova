@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input } from '../ui/Input';
 import { AppointmentFormData } from '../../types';
+import { motion } from 'framer-motion';
 
 interface PatientStepProps {
   formData: AppointmentFormData;
@@ -9,41 +10,56 @@ interface PatientStepProps {
 
 const PatientStep: React.FC<PatientStepProps> = ({ formData, onChange }) => {
   return (
-    <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-gray-900 mb-6">Your Information</h3>
-      <div className="space-y-4">
+    <div className="space-y-8">
+      <h3 className="text-3xl font-extralight tracking-tight text-yellow-400/90">
+        Your Information
+      </h3>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 "
+      >
         <Input
           label="Full Name"
-          placeholder="John Doe"
+          placeholder="What's your name?"
           value={formData.patientName}
           onChange={(e) => onChange('patientName', e.target.value)}
+          className="bg-[#273f23] border-yellow-400/30 focus:ring-yellow-400 text-white placeholder-white/70"
         />
+
         <Input
           label="Email Address"
           type="email"
-          placeholder="john@example.com"
+          placeholder="Enter your email"
           value={formData.patientEmail}
           onChange={(e) => onChange('patientEmail', e.target.value)}
+          className="bg-[#273f23] border-yellow-400/30 focus:ring-yellow-400 text-white placeholder-white/70"
         />
+
         <Input
           label="Phone Number"
           type="tel"
-          placeholder="(555) 123-4567"
+          placeholder="What's your phone number?"
           value={formData.patientPhone}
           onChange={(e) => onChange('patientPhone', e.target.value)}
+          className="bg-[#273f23] border-yellow-400/30 focus:ring-yellow-400 text-white placeholder-white/70"
         />
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+
+        <div className="md:col-span-2">
+          <label className="block text-sm font-medium text-white/80 mb-2">
             Reason for Visit
           </label>
-          <textarea
-            className="w-full h-32 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          <motion.textarea
+            className="w-full h-32 px-4 py-3 rounded-xl bg-[#273f23]/80 border border-yellow-400/30 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white placeholder-white/60 transition-all"
             placeholder="Please describe your symptoms or reason for appointment..."
             value={formData.reason}
             onChange={(e) => onChange('reason', e.target.value)}
+            whileFocus={{ scale: 1.02 }}
           />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

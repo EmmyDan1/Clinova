@@ -23,6 +23,7 @@ const DateTimeStep: React.FC<DateTimeStepProps> = ({ formData, onChange }) => {
             value={formData.date}
             onChange={(e) => onChange('date', e.target.value)}
             min={new Date().toISOString().split('T')[0]}
+            className='text-black'
           />
         </div>
         <div>
@@ -30,7 +31,7 @@ const DateTimeStep: React.FC<DateTimeStepProps> = ({ formData, onChange }) => {
             Preferred Time
           </label>
           <select
-            className="w-full h-12 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="w-full h-12 px-4 text-black rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
             value={formData.time}
             onChange={(e) => onChange('time', e.target.value)}
           >

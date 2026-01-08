@@ -6,23 +6,33 @@ interface StepperProps {
 }
 
 const Stepper: React.FC<StepperProps> = ({ currentStep, steps }) => {
+  const currentIndex = steps.findIndex(s => s.id === currentStep);
+
   return (
-    <div className="mb-12 flex justify-between relative">
-      <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -translate-y-1/2 rounded-full"></div>
+    <div className="flex justify-center mb-12 space-x-8 relative">
       {steps.map((step, index) => {
-        const stepIndex = steps.findIndex(s => s.id === currentStep);
-        const isCompleted = index < stepIndex;
-        const isCurrent = index === stepIndex;
+        const isCompleted = index < currentIndex;
+        const isCurrent = index === currentIndex;
 
         return (
-          <div key={step.id} className="flex flex-col items-center relative z-10">
+          <div key={step.id} className="flex flex-col text-black items-center relative">
+            {/* Connector line */}
+            {index !== 0 && (
+              <div
+                className={`absolute top-1/2 -left-4 w-8 h-1 rounded-full ${
+                  isCompleted ? 'bg-[#9D6F4A]' : 'bg-white/30'
+                }`}
+              ></div>
+            )}
+
+            {/* Step circle */}
             <div
               className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-all ${
                 isCurrent
-                  ? 'bg-[#273f23] text-yellow-400'
+                  ? 'bg-[#9D6F4A] text-black shadow-lg'
                   : isCompleted
-                  ? 'bg-[#273f23]/20 text-[#273f23]'
-                  : 'bg-white border-2 border-gray-300 text-gray-400'
+                  ? 'bg-[#9D6F4A]/60 text-white'
+                  : 'bg-white border-2 border-white/30 text-white/60'
               }`}
             >
               {isCompleted ? (
@@ -32,13 +42,23 @@ const Stepper: React.FC<StepperProps> = ({ currentStep, steps }) => {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
               ) : (
                 index + 1
               )}
             </div>
-            <span className={`text-sm font-medium ${isCurrent ? 'text-[#273f23]' : 'text-gray-500'}`}>
+
+            <span
+              className={`text-sm font-medium ${
+                isCurrent || isCompleted ? 'text-white' : 'text-white/60'
+              }`}
+            >
               {step.title}
             </span>
           </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { services } from '../../data/services';
 import { AppointmentFormData } from '../../types';
 
@@ -9,27 +9,85 @@ interface Props {
 }
 
 const DepartmentStep: React.FC<Props> = ({ formData, onChange }) => {
+  const currentIndex = services.findIndex(
+    s => s.title === formData.department
+  );
+
+  const handleNext = () => {
+    const next = (currentIndex + 1) % services.length;
+    onChange('department', services[next].title);
+  };
+
+  const handlePrev = () => {
+    const prev =
+      currentIndex === -1
+        ? 0
+        : (currentIndex - 1 + services.length) % services.length;
+    onChange('department', services[prev].title);
+  };
+
   return (
-    <div className="space-y-6">
-      <h3 className="text-3xl font-bold text-[#273f23] mb-4">Select Department</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {services.map(service => (
-          <motion.button
-            key={service.id}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={`p-6 rounded-xl border-2 text-left shadow-sm transition-all ${
-              formData.department === service.title
-                ? 'border-[#273f23] bg-[#fef7e0]'
-                : 'border-gray-200 hover:border-[#273f23] hover:bg-gray-50'
-            }`}
-            onClick={() => onChange('department', service.title)}
-          >
-            <div className="text-2xl mb-2">{service.icon}</div>
-            <h4 className="font-semibold text-[#273f23] mb-1">{service.title}</h4>
-            <p className="text-gray-600 text-sm">{service.description}</p>
-          </motion.button>
-        ))}
+    <div className="space-y-12 ">
+      <h3 className="text-3xl md:text-2xl font-light text-yellow-400 mb-6">
+        Choose a Department
+      </h3>
+
+      {/* Progress Bar */}
+      <div className="h-1 w-full bg-white/20 rounded-full mb-6">
+        <div
+          className="h-1 bg-[#9D6F4A] rounded-full transition-all duration-500"
+          style={{
+            width: `${
+              currentIndex === -1
+                ? 0
+                : ((currentIndex + 1) / services.length) * 100
+            }%`,
+          }}
+        />
+      </div>
+
+      {/* Animated Department Display */}
+      <div className="relative">
+        <AnimatePresence mode="wait">
+          {currentIndex !== -1 && (
+            <motion.div
+              key={services[currentIndex].id}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.4 }}
+              className="bg-[#273f23] rounded-2xl p-10 cursor-pointer"
+              onClick={handleNext}
+            >
+              <h4 className="text-2xl md:text-3xl font-semibold text-white mb-2">
+                {services[currentIndex].title}
+              </h4>
+              <p className="text-white/70 md:text-lg leading-relaxed">
+                {services[currentIndex].description}
+              </p>
+
+              <div className="mt-4 text-white/50 text-sm">
+                Click to select & see next
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={handlePrev}
+          className="text-white/70 hover:text-white transition"
+        >
+          Previous
+        </button>
+        <button
+          onClick={handleNext}
+          className="text-yellow-400 py-1 px-4 border hover:border-yellow-400 rounded-full font-semibold hover:brightness-110 transition"
+        >
+          Next
+        </button>
       </div>
     </div>
   );

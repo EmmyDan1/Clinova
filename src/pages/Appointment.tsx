@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { Card } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { AppointmentFormData, AppointmentStep } from '../types';
-
 import Stepper from '../components/appointments/Stepper';
 import DepartmentStep from '../components/appointments/DepartmentStep';
 import DoctorStep from '../components/appointments/DoctorStep';
 import DateTimeStep from '../components/appointments/DateTimeStep';
 import PatientStep from '../components/appointments/PatientStep';
 import ConfirmationStep from '../components/appointments/ConfirmationStep';
+import { Button } from '../components/ui/Button';
 
 const steps: Array<{ id: AppointmentStep; title: string }> = [
   { id: 'department', title: 'Department' },
@@ -62,24 +60,44 @@ const Appointment: React.FC = () => {
   };
 
   return (
-    <div className="py-12 bg-[#f9f9f9] min-h-screen">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center mb-12">
-          <h1 className="text-5xl font-bold text-[#273f23] mb-4">Book an Appointment</h1>
-          <p className="text-lg text-gray-600">Schedule your visit with our specialists</p>
-        </div>
+    <div className="min-h-screen py-12 bg-[#273f23] flex flex-col  ">
+      {/* Header */}
+      <div className="max-w-3xl text-start mt-24 ">
+        <h1 className="text-3xl  font-light text-yellow-400 ">
+          Book an Appointment
+        </h1>
+        <p className="text-lg text-white/70">
+          Schedule your visit with our specialists
+        </p>
+      </div>
 
-        <Stepper currentStep={currentStep} steps={steps} />
+      {/* Stepper */}
+      <Stepper currentStep={currentStep} steps={steps} />
 
-        <Card className="p-8 mb-8">
-          <AnimatePresence mode="wait">
+      {/* Step Content */}
+      <div className="w-full max-w-3xl mt-6 mx-auto">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentStep}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.4 }}
+            className="px-8 py-12 rounded-3xl bg-gradient-to-br from-[#3a5a3a] via-[#4e7150] to-[#9D6F4A] shadow-2xl text-white"
+          >
             {renderStep()}
-          </AnimatePresence>
-        </Card>
+          </motion.div>
+        </AnimatePresence>
 
+        {/* Navigation */}
         {currentStep !== 'confirmation' && (
-          <div className="flex justify-between">
-            <Button variant="outline" onClick={handleBack} disabled={currentStep === 'department'}>
+          <div className="flex justify-between mt-8">
+            <Button
+              variant="outline"
+              onClick={handleBack}
+              disabled={currentStep === 'department'}
+              className="text-yellow-400 border-yellow-400 rounded-full transition"
+            >
               Back
             </Button>
             <Button
@@ -91,6 +109,7 @@ const Appointment: React.FC = () => {
                 (currentStep === 'patient' &&
                   (!formData.patientName || !formData.patientEmail || !formData.patientPhone))
               }
+              className="text-yellow-400 border-yellow-400 rounded-full border  font-semibold"
             >
               {currentStep === 'patient' ? 'Schedule Appointment' : 'Next'}
             </Button>

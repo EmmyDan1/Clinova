@@ -7,10 +7,6 @@
     font-family: 'Inter', system-ui, sans-serif;
     scroll-behavior: smooth;
   }
-  
-  /* body {
-    @apply text-gray-900 antialiased;
-  } */
 }
 
 @layer components {
@@ -19,7 +15,6 @@
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -36,10 +31,10 @@
   display: none;
 }
 
-/* ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   @apply bg-teal-600 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-teal-700;
-} */
+}

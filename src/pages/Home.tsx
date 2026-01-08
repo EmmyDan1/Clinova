@@ -11,8 +11,6 @@ const Home: React.FC = () => {
       <Services />
       <Doctors />
      
-      
-      {/* Contact CTA Section */}
     
     </div>
   );

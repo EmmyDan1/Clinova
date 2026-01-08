@@ -7,7 +7,7 @@ const Hero = () => {
     <section className="relative w-full bg-[#273f23] px-4 pt-20 pb-12">
       <div className="mx-auto max-w-7xl">
         <div className="relative overflow-hidden rounded-3xl shadow">
-          {/* MOBILE IMAGE */}
+        
           <img
             src="/images/HeroMobile.webp"
             alt="Professional nurse in a calm clinical environment"
@@ -20,7 +20,6 @@ const Hero = () => {
             "
           />
 
-          {/* DESKTOP IMAGE (UNCHANGED) */}
           <img
             src="/images/hero.webp"
             alt="Professional nurse in a calm clinical environment"
