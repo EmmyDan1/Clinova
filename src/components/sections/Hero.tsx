@@ -7,7 +7,6 @@ const Hero = () => {
     <section className="relative w-full bg-[#273f23] px-4 pt-20 pb-12">
       <div className="mx-auto max-w-7xl">
         <div className="relative overflow-hidden rounded-3xl shadow">
-        
           <img
             src="/images/HeroMobile.webp"
             alt="Professional nurse in a calm clinical environment"
@@ -82,9 +81,11 @@ const Hero = () => {
                   Book an Appointment
                 </button>
               </Link>
-              <button className="mx-auto mt-2 inline-flex rounded-full  border px-6 py-2 text-sm font-normal text-[#fbedc0] lg:mx-0 lg:ml-2">
-                See Doctors
-              </button>
+              <Link to="/doctors">
+                <button className="mx-auto mt-2 inline-flex rounded-full  border px-6 py-2 text-sm font-normal text-[#fbedc0] lg:mx-0 lg:ml-2">
+                  See Doctors
+                </button>
+              </Link>
             </motion.div>
           </div>
         </div>
