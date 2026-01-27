@@ -60,9 +60,9 @@ const Appointment: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 bg-[#273f23] flex flex-col  ">
-      {/* Header */}
-      <div className="max-w-3xl text-start mt-24 ">
+    <div className="min-h-screen text-center py-12 bg-[#273f23] flex flex-col  ">
+ 
+      <div className="  mt-24 ">
         <h1 className="text-3xl  font-light text-yellow-400 ">
           Book an Appointment
         </h1>
@@ -71,10 +71,9 @@ const Appointment: React.FC = () => {
         </p>
       </div>
 
-      {/* Stepper */}
+
       <Stepper currentStep={currentStep} steps={steps} />
 
-      {/* Step Content */}
       <div className="w-full max-w-3xl mt-6 mx-auto">
         <AnimatePresence mode="wait">
           <motion.div
@@ -89,7 +88,6 @@ const Appointment: React.FC = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation */}
         {currentStep !== 'confirmation' && (
           <div className="flex justify-between mt-8">
             <Button
