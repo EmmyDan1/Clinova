@@ -1,8 +1,9 @@
-import { doctors } from '../data/doctors';
-import { Calendar, ChevronRight } from 'lucide-react';
+import { Link } from "react-router-dom";
+import { doctors } from "../data/doctors";
+import { Calendar, ChevronRight } from "lucide-react";
 
 const DoctorsPage: React.FC = () => {
-  const specialties = Array.from(new Set(doctors.map(d => d.specialty)));
+  const specialties = Array.from(new Set(doctors.map((d) => d.specialty)));
 
   return (
     <div className="py-20 bg-[#273f23]">
@@ -15,15 +16,14 @@ const DoctorsPage: React.FC = () => {
               Specialists
             </span>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8 items-end">
             <div>
               <h1 className="text-4xl font-light text-white mb-4">
                 Our <span className="font-medium">Medical Team</span>
               </h1>
-
             </div>
-            
+
             {/* Clean filter */}
             <div className="flex flex-wrap gap-2 justify-end">
               <button className="px-4 py-2 text-sm font-medium text-white bg-white/10 hover:bg-white/15 rounded-full transition-colors backdrop-blur-sm">
@@ -44,10 +44,7 @@ const DoctorsPage: React.FC = () => {
         {/* Clean grid - no cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {doctors.map((doctor) => (
-            <div 
-              key={doctor.id}
-              className="group overflow-hidden"
-            >
+            <div key={doctor.id} className="group overflow-hidden">
               {/* Image container */}
               <div className="relative h-64 rounded-xl overflow-hidden mb-6">
                 <img
@@ -56,7 +53,7 @@ const DoctorsPage: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                
+
                 {/* Specialty */}
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1.5 text-xs font-medium text-white bg-black/40 backdrop-blur-sm rounded-full">
@@ -86,13 +83,15 @@ const DoctorsPage: React.FC = () => {
                 {/* Stats */}
                 <div className="flex items-center justify-between text-sm mb-6">
                   <div className="text-white">
-                    <span className="font-medium">{doctor.experience}+</span> years
+                    <span className="font-medium">{doctor.experience}+</span>{" "}
+                    years
                   </div>
                   <div className="text-yellow-100/30">
-                    <span className="font-medium text-white">98%</span> satisfaction
+                    <span className="font-medium text-white">98%</span>{" "}
+                    satisfaction
                   </div>
                 </div>
-                
+
                 {/* Languages */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {doctor.languages.map((lang) => (
@@ -105,12 +104,13 @@ const DoctorsPage: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Action */}
-                <button className="w-full py-3 text-sm font-medium text-white hover:text-yellow-400 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-center gap-2 group/btn border border-white/10">
-                  <Calendar className="w-4 h-4" />
-                  <span>Schedule consultation</span>
-                  <ChevronRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                <Link to="/appointment">
+                  <button className="w-full py-3 text-sm font-medium text-white hover:text-yellow-400 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-center gap-2 group/btn border border-white/10">
+                    <Calendar className="w-4 h-4" />
+                    <span>Schedule consultation</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -121,18 +121,16 @@ const DoctorsPage: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { value: '24/7', label: 'Consultation' },
-                { value: '≤48h', label: 'Appointment' },
-                { value: '98%', label: 'Satisfaction' },
-                { value: '50+', label: 'Specialists' }
+                { value: "24/7", label: "Consultation" },
+                { value: "≤48h", label: "Appointment" },
+                { value: "98%", label: "Satisfaction" },
+                { value: "50+", label: "Specialists" },
               ].map((stat, idx) => (
                 <div key={idx} className="text-center">
                   <div className="text-2xl font-light text-white mb-1.5">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-yellow-100/30">
-                    {stat.label}
-                  </div>
+                  <div className="text-sm text-yellow-100/30">{stat.label}</div>
                 </div>
               ))}
             </div>
